@@ -1,0 +1,710 @@
+/* ============ TUNISIE TELECOM — DESIGN SYSTEM 2026 ============ */
+:root {
+  --tt-deep: #062f6e;
+  --tt-blue: #0b4e9b;
+  --tt-cyan: #29abe2;
+  --tt-teal: #00a99d;
+  --tt-green: #3aaa35;
+  --tt-lime: #8dc63f;
+  --tt-yellow: #ffd100;
+  --tt-orange: #f7941e;
+  --tt-magenta: #e6007e;
+  --tt-purple: #92278f;
+  --tt-violet: #662d91;
+}
+
+/* --- Dégradé signature TT --- */
+.tt-gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--tt-cyan),
+    var(--tt-teal),
+    var(--tt-lime),
+    var(--tt-yellow),
+    var(--tt-orange),
+    var(--tt-magenta),
+    var(--tt-violet),
+    var(--tt-cyan)
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: tt-gradient 9s linear infinite;
+}
+.tt-gradient-bar {
+  background: linear-gradient(
+    90deg,
+    var(--tt-cyan),
+    var(--tt-teal),
+    var(--tt-lime),
+    var(--tt-yellow),
+    var(--tt-orange),
+    var(--tt-magenta),
+    var(--tt-violet)
+  );
+  background-size: 200% 100%;
+  animation: tt-gradient 8s linear infinite;
+}
+@keyframes tt-gradient {
+  to {
+    background-position: 300% 50%;
+  }
+}
+
+/* --- Bordure dégradée (cartes) --- */
+.tt-border-gradient {
+  position: relative;
+  background: #fff;
+}
+.tt-border-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    var(--tt-cyan),
+    var(--tt-magenta),
+    var(--tt-yellow)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.tt-border-gradient:hover::before {
+  opacity: 1;
+}
+
+/* --- Reveal au scroll --- */
+.tt-reveal {
+  opacity: 0;
+  transform: translateY(32px) scale(0.985);
+}
+.tt-reveal.is-in {
+  animation: tt-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes tt-fade-up {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Flottement --- */
+@keyframes tt-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+.tt-float {
+  animation: tt-float 6s ease-in-out infinite;
+}
+.tt-float-slow {
+  animation: tt-float 9s ease-in-out infinite;
+}
+
+/* --- Blob organique --- */
+@keyframes tt-blob {
+  0%,
+  100% {
+    border-radius: 62% 38% 46% 54% / 55% 46% 54% 45%;
+  }
+  33% {
+    border-radius: 40% 60% 62% 38% / 45% 62% 38% 55%;
+  }
+  66% {
+    border-radius: 55% 45% 35% 65% / 62% 40% 60% 38%;
+  }
+}
+.tt-blob {
+  animation: tt-blob 16s ease-in-out infinite;
+}
+
+/* --- Ondes / rings --- */
+@keyframes tt-ping-ring {
+  0% {
+    transform: scale(0.75);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+.tt-ring {
+  animation: tt-ping-ring 4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes tt-spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.tt-spin-slow {
+  animation: tt-spin-slow 40s linear infinite;
+}
+
+/* --- Marquee --- */
+@keyframes tt-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.tt-marquee {
+  animation: tt-marquee 28s linear infinite;
+}
+.tt-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* --- Shimmer (skeleton) --- */
+@keyframes tt-shimmer {
+  to {
+    background-position: 200% 0;
+  }
+}
+.tt-shimmer {
+  background: linear-gradient(90deg, #eef2f7 25%, #f8fafc 37%, #eef2f7 63%);
+  background-size: 200% 100%;
+  animation: tt-shimmer 1.4s ease-in-out infinite;
+}
+
+/* --- Glass --- */
+.tt-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+.tt-glass-dark {
+  background: rgba(6, 47, 110, 0.42);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+
+/* --- Hover magnétique carte --- */
+.tt-card {
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s;
+}
+.tt-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 26px 60px -22px rgba(6, 47, 110, 0.35);
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--tt-cyan), var(--tt-magenta));
+  border-radius: 99px;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- Accessibilité --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .tt-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* ============================================================
+   ANIMATIONS & KEYFRAMES PERSONNALISÉES
+   ============================================================ */
+
+@keyframes tt-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tt-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes tt-float-slow {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes tt-spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tt-shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes tt-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(58, 170, 53, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(58, 170, 53, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(58, 170, 53, 0);
+  }
+}
+
+@keyframes tt-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - 1rem));
+  }
+}
+
+@keyframes tt-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tt-grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes tt-typing {
+  0% {
+    content: "";
+  }
+  50% {
+    content: "Recherche en cours";
+  }
+  100% {
+    content: "Résultats trouvés ✓";
+  }
+}
+
+/* ============================================================
+   CLASSES UTILITAIRES
+   ============================================================ */
+@keyframes tt-typing {
+  0% {
+    content: "";
+  }
+  50% {
+    content: "Recherche en cours";
+  }
+  100% {
+    content: "Résultats trouvés ✓";
+  }
+}
+
+@keyframes tt-pulse-ring {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.55;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+}
+
+@keyframes tt-orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* ---------- Carrousel infini (offres en vedette) ---------- */
+@keyframes tt-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.tt-marquee-track {
+  animation-name: tt-marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+/* pause au survol ET au focus clavier (accessibilité) */
+.tt-marquee:hover .tt-marquee-track,
+.tt-marquee:focus-within .tt-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Respect de prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .tt-marquee-track {
+    animation: none;
+  }
+  .tt-marquee {
+    overflow-x: auto;
+  }
+}
+
+/* ---------- Halo pulsant (logo TT sur la timeline + badges) ---------- */
+@keyframes tt-ring-pulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+.tt-ring {
+  animation: tt-ring-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* anneaux pulsants pour l'emblème TT */
+@keyframes tt-pulse-ring {
+  0% {
+    transform: scale(0.75);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+/* sécurité : rien ne dépasse du hero */
+#home {
+  overflow-x: clip;
+}
+/* ============================================================
+   CLASSES UTILITAIRES
+   ============================================================ */
+/* Reveal au scroll */
+.tt-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: tt-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.tt-reveal[data-delay="0"] {
+  animation-delay: 0s;
+}
+.tt-reveal[data-delay="1"] {
+  animation-delay: 0.15s;
+}
+.tt-reveal[data-delay="2"] {
+  animation-delay: 0.3s;
+}
+.tt-reveal[data-delay="3"] {
+  animation-delay: 0.45s;
+}
+.tt-reveal[data-delay="4"] {
+  animation-delay: 0.6s;
+}
+.tt-reveal[data-delay="5"] {
+  animation-delay: 0.75s;
+}
+
+/* Flottement */
+.tt-float {
+  animation: tt-float 4s ease-in-out infinite;
+}
+
+.tt-float-slow {
+  animation: tt-float-slow 5.5s ease-in-out infinite;
+}
+
+/* Spin lent */
+.tt-spin-slow {
+  animation: tt-spin-slow 20s linear infinite;
+}
+
+/* Shimmer (skeleton) */
+.tt-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.3) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  background-size: 200% 100%;
+  animation: tt-shimmer 2.5s infinite;
+}
+
+/* Pulse ring */
+.tt-ring {
+  animation: tt-ring 1.5s infinite;
+}
+
+/* Marquee */
+.tt-marquee {
+  animation: tt-marquee 30s linear infinite;
+}
+
+/* Gradient bar (top) */
+.tt-gradient-bar {
+  background: linear-gradient(
+    90deg,
+    #29abe2 0%,
+    #00a99d 20%,
+    #8dc63f 40%,
+    #ffd100 60%,
+    #f7941e 80%,
+    #e6007e 100%
+  );
+}
+
+/* Gradient text */
+.tt-gradient-text {
+  background: linear-gradient(
+    135deg,
+    #29abe2 0%,
+    #00a99d 25%,
+    #ffd100 50%,
+    #e6007e 75%,
+    #662d91 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 300% 300%;
+  animation: gradient-shift 6s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Glass effect */
+.tt-glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.tt-glass-dark {
+  background: rgba(3, 33, 79, 0.35);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Card hover effect */
+.tt-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.tt-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.tt-card:hover::before {
+  left: 100%;
+}
+
+/* Border gradient */
+.tt-border-gradient {
+  position: relative;
+  border: transparent;
+  background-clip: padding-box;
+}
+
+.tt-border-gradient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    #29abe2,
+    #00a99d,
+    #8dc63f,
+    #ffd100,
+    #f7941e,
+    #e6007e
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.2;
+  transition: opacity 0.3s;
+}
+
+.tt-card:hover::before {
+  opacity: 0.4;
+}
+
+/* Blob shape */
+.tt-blob {
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  animation: blob-morph 8s ease-in-out infinite;
+}
+
+@keyframes blob-morph {
+  0%,
+  100% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  25% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  50% {
+    border-radius: 70% 30% 46% 54% / 30% 30% 70% 70%;
+  }
+  75% {
+    border-radius: 30% 70% 30% 70% / 60% 40% 60% 40%;
+  }
+}
+
+/* Typing effect */
+.tt-typing {
+  display: inline-block;
+  color: #0b4e9b;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: tt-typing 3s steps(25, end) infinite;
+}
+
+.tt-typing::after {
+  content: "|";
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   SCROLL REVEAL (intersection observer)
+   ============================================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .tt-reveal {
+    animation: tt-reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE TWEAKS
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .tt-reveal {
+    animation-duration: 0.6s;
+  }
+
+  .tt-gradient-text {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================================
+   DARK MODE SUPPORT (optionnel)
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+  .tt-glass {
+    background: rgba(3, 33, 79, 0.5);
+  }
+}
